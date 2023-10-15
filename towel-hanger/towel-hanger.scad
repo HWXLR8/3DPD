@@ -1,5 +1,5 @@
-cube([40, 4, 17]);
-cube([4, 15, 17]);
-translate([0, 14, 0]) cube([40, 4, 17]);
-translate([36, 14, 0]) cube([4, 30, 17]);
-translate([25, 40, 0]) cube([15, 4, 17]);
+cube([42, 6, 35]);
+cube([6, 15.5, 35]);
+translate([0, 15.5, 0]) cube([42, 6, 35]);
+translate([36, 16, 0]) cube([6, 30, 35]);
+translate([25, 45, 0]) cube([17, 6, 35]);
