@@ -19,17 +19,34 @@ module lipstick_box(top_inner, fatness, wall_thickness) {
     }
 }
 
+module lipstick_box_3d(top_inner, fatness, wall_thickness, height) {
+    linear_extrude(height, scale=[1, 1])
+        lipstick_box(20, fatness, wall_thickness);
+    
+    linear_extrude(base_thickness)
+        trapezoid(top_inner + (2 * fatness / tan(60)), top_inner, fatness);
+}
+
 fatness = 40;
 top_inner = 20;
 wall_thickness = 1.5;
+base_thickness = 3;
 //color([1, 0, 0, 0.5])
 
 cutout_inner = 14;
 cutout_outer = 7;
-difference() {
-//translate ([0, -fatness/2, 0])
-lipstick_box(20, fatness, wall_thickness);
 
-translate([0, (fatness/2)+wall_thickness, 0])
-trapezoid(cutout_inner, cutout_outer, wall_thickness*2);
+min_height = 60;
+max_height = 100;
+
+difference() {
+    //translate ([0, -fatness/2, 0])
+    lipstick_box_3d(top_inner, fatness, wall_thickness, min_height);
+
+    // Opening for sliding
+    linear_extrude(min_height - base_thickness){
+        translate([0, (fatness/2)+wall_thickness, 0])
+            trapezoid(cutout_inner, cutout_outer, wall_thickness*2);
+    }
 }
+
