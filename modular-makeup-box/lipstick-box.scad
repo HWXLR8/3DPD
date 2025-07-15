@@ -29,11 +29,11 @@ module sloped_trapezoid_3d(trapezoid_base, trapezoid_top, trapezoid_height, min_
         points = concat(bottom, top),
         faces = [
             [0,1,2,3],  // bottom face
-            [4,5,6,7],  // top face
-            [0,1,5,4],  // front
-            [1,2,6,5],  // right
-            [2,3,7,6],  // back
-            [3,0,4,7]   // left
+            [7,6,5,4],  // top face
+            [4,5,1,0],  // front
+            [5,6,2,1],  // right
+            [6,7,3,2],  // back
+            [7,4,0,3]   // left
         ]
     );
 }
@@ -47,8 +47,11 @@ module lipstick_box(top_inner, fatness, wall_thickness, min_height, max_height) 
     
     difference() {
         sloped_trapezoid_3d(base_outer, top_inner, fatness_outer, min_height, max_height);
-        linear_extrude(max_height)
+
+        translate([0, 0, wall_thickness]){
+            linear_extrude(max_height)
             trapezoid(base_inner, top_inner, fatness_inner);
+        }
     }
 }
 
@@ -58,6 +61,7 @@ module lipstick_box_3d(top_inner, fatness, wall_thickness, height) {
     
     linear_extrude(base_thickness)
         trapezoid(top_inner + (2 * fatness / tan(60)), top_inner, fatness);
+    
 }
 
 fatness = 40;
