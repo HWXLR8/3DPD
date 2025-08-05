@@ -36,16 +36,17 @@ module switch_plate() {
 module rack_plate() {
   rack_hole_r = 6.7/2;
   rack_hole_dy = 33;
+  rack_hole_inset = 13/2;
 
   gap = ((rack_w - switch_w) / 2);
-  ear = 13;
+  ear_w = 13 + 1.5;
 
   difference() {
-    rect([gap + ear, switch_h],
+    rect([gap + ear_w, switch_h],
          rounding = [3, 0, 0, 3],
          anchor=BOT+LEFT);
     // holes
-    translate([gap + (ear / 2),
+    translate([gap + ear_w - rack_hole_inset,
                (switch_h - rack_hole_dy) / 2,
                0]) {
       circle(rack_hole_r);
