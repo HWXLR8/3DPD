@@ -1,33 +1,29 @@
-/* general settings */
-baseWidth = 150; // in x direction
-baseHeight = 120; // in y direction
-totalHeight = 50; // floor height plus wall height
+$fn = 512;
 
-baseDepth = 5.5; // floor height, default: 5.5
-wallDepth = 6; // central wall
+// ── universal ───────────────────────────────────────────────
+baseWidth    = 150;    // x dimension
+baseHeight   = 120;    // y dimension
+totalHeight  = 50;     // floor + wall height
+baseDepth    = 5.5;    // floor thickness
+wallDepth    = 6;      // wall thickness
+cornerRadius = 10;     // corner radius on base and walls
+centerOffset = 10;     // shift both walls off-center
+distanceWall_1 = 24.0; // gap for laptop 1
+distanceWall_2 = 10.0; // gap for laptop 2
 
-cornerRadius = 10; // corner radius of base and walls
-
+// ── modular toggle ──────────────────────────────────────────
 modular = false;
-/* if modular */
-distanceWall_1 = 24.0; // height of laptop 1
-distanceWall_2 = 10.0; // height of laptop 2
 
-/* if not modular */
-wallBase = 2; // additional base at the end of the wall
+// ── modular only ────────────────────────────────────────────
+minDistance = 10;           // min wall distance
+maxDistance = 35;           // max wall distance
+slotOffset  = baseHeight/3; // slot distance from center
+wallBase    = 2;            // extra base at wall end
 
-minDistance =  10; // min wall distance if modular
-maxDistance = 35; // max wall distance if modular
+// ── screw hardware ──────────────────────────────────────────
+countersunkScrew = true;  // false = button/socket head
+threadInserts    = true;  // false = screw direct into plastic
 
-slotOffset = baseHeight/3; // distance of slots to center if modular
-
-countersunkScrew = true; // if false, for button or socket head screwes
-threadInserts = true;// if true, the walls use thread inserts, instead of screwing directly into the plastic
-
-centerOffset = 10; // shift both walls off-center
-
-/* beauty settings */
-$fn = 512; // the higher the number the longer takes the render
 
 /*
  * utility function
